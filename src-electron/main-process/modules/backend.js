@@ -57,8 +57,12 @@ export class Backend {
             },
 
             daemon: {
+                // Default remote points at Ryo-controlled infrastructure.
+                // The previous default `geo.ryoblocks.com:12211` is no longer
+                // controlled by Ryo Currency; the domain expired and was
+                // re-registered by an unrelated party.
                 type: "local_remote",
-                remote_host: "geo.ryoblocks.com",
+                remote_host: "wallet-node.ryo-currency.com",
                 remote_port: 12211,
                 p2p_bind_ip: "0.0.0.0",
                 p2p_bind_port: 12210,
@@ -207,7 +211,7 @@ export class Backend {
             case "open_explorer":
                 let explorer_url = "https://explorer.ryo-currency.com"
                 if(this.config_data.app.testnet) {
-                    explorer_url = "https://tnexp.ryoblocks.com"
+                    explorer_url = "https://tnexp.ryo-currency.com"
                 }
                 if(params.type == "tx") {
                     require("electron").shell.openExternal(`${explorer_url}/tx/${params.id}`)
